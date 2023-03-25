@@ -1,0 +1,23 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+pda = "FHG91YeWRPzxMAA8C66qQnMhZG3k4FXHAWc3zWFpywdS"
+hacker="DhNTR8sYeKHLraVBsDGx6RMkBTwCYQ4v3ZWLhd9pmNWu"
+
+[workspace]
+members = [
+  "pda",
+  "hacker",
+]
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "/Users/minhdo/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
