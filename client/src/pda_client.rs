@@ -16,6 +16,7 @@ pub fn pda_program<C: Deref<Target = impl Signer> + Clone>(
     let program = client.program(program_id);
     let seed_signers = &[SEED, user.as_ref()];
     let (escrow_account, _) = Pubkey::find_program_address(seed_signers, &program_id);
+    println!("{}", escrow_account.to_string());
     // Build and send a transaction.
     let signature = program
         .request()
@@ -23,12 +24,12 @@ pub fn pda_program<C: Deref<Target = impl Signer> + Clone>(
             escrow_account: escrow_account,
             owner: user,
             system_program: system_program::ID,
-            rent: sysvar::ID,
+            rent: sysvar::rent::id(),
         })
-        .args(pda_instruction::Initialize{})
-        .send()?;
+        .args(pda_instruction::Initialize {})
+        .send();
 
-    println!("init pda: {}", signature);
+    println!("init pda: {:?}", signature);
 
     Ok(())
 }
