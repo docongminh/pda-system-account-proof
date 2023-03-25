@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("FHG91YeWRPzxMAA8C66qQnMhZG3k4FXHAWc3zWFpywdS");
+declare_id!("DzSN8ZCEURUe3nXtUi23L4N6jCQT16B8GjfZQ1CkoQEh");
 const LAMPORT_PER_SOL: u64 = 1_000_000_000;
 const SEED: &[u8] = b"seed";
 #[program]
@@ -28,7 +28,7 @@ pub struct Initialize<'info> {
     pub rent: Sysvar<'info, Rent>,
 }
 
-impl<'info> Initialize<'info> {
+impl<'info> Initialize <'info> {
     fn create_native_account_vault(&self, bump: u8) -> Result<()> {
         let authority_key = self.owner.key();
         let seed_signers = &[&[SEED, authority_key.as_ref(), bytemuck::bytes_of(&bump)][..]];

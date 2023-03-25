@@ -1,16 +1,8 @@
 [features]
 seeds = false
 skip-lint = false
-
 [programs.localnet]
-pda = "FHG91YeWRPzxMAA8C66qQnMhZG3k4FXHAWc3zWFpywdS"
-hacker="DhNTR8sYeKHLraVBsDGx6RMkBTwCYQ4v3ZWLhd9pmNWu"
-
-[workspace]
-members = [
-  "pda",
-  "hacker",
-]
+hacker = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 [registry]
 url = "https://api.apr.dev"
