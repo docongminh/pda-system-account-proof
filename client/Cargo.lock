@@ -847,6 +847,7 @@ dependencies = [
  "anchor-client",
  "anyhow",
  "clap 4.1.13",
+ "hacker",
  "pda",
  "shellexpand",
  "solana-sdk",
@@ -1595,6 +1596,15 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+]
+
+[[package]]
+name = "hacker"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+ "bytemuck",
 ]
 
 [[package]]

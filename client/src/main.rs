@@ -10,14 +10,16 @@ use solana_sdk::{
 };
 
 mod pda_client;
+mod hacker_client;
 use crate::pda_client::pda_program;
+use crate::hacker_client::hacker_program;
 
 #[derive(Parser, Debug)]
 pub struct Opts {
     #[clap(long)]
     pda_program_id: Pubkey,
-    // #[clap(long)]
-    // hacker_program_id: Pubkey,
+    #[clap(long)]
+    hacker_program_id: Pubkey,
 }
 
 fn main() -> Result<()> {
@@ -25,6 +27,10 @@ fn main() -> Result<()> {
 
     // Wallet and cluster params.
     let payer = read_keypair_file(
+        &*shellexpand::tilde("/Users/minhdo/.config/solana/id.json")
+    ).expect("Example requires a keypair file");
+
+    let hacker = read_keypair_file(
         &*shellexpand::tilde("/Users/minhdo/.config/solana/id.json")
     ).expect("Example requires a keypair file");
     let url = Cluster::Custom(
@@ -39,8 +45,12 @@ fn main() -> Result<()> {
         CommitmentConfig::processed()
     );
 
-    // Run tests on single thread with a single client using an Rc
+    // pda program: init a pda account and transfer 1 SOL to this pda account
     pda_program(&client, payer.pubkey(), opts.pda_program_id)?;
+
+    // hacker program: know seeds, program id, and re-create pda
+    // re-create new program and use this pda to hack token inside account
+    hacker_program(&client, hacker.pubkey(), payer.pubkey(), opts.hacker_program_id, opts.pda_program_id)?;
 
     Ok(())
 }
