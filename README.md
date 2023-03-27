@@ -1,6 +1,6 @@
 # pda-system-account-proof
 Prove pda system account storage lamports really secure. Some people concern about pda account, that assigned for system program rather than itself program id is not secure. 
-This 's a peace of code that prove that pda account assigned for system program always secure.
+This 's a piece of code that prove that pda account assigned for system program always secure.
 
 [Program](https://github.com/docongminh/pda-system-account-proof/tree/master/programs/pda) init pda account
 ```rust
